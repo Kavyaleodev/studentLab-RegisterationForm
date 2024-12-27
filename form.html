@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Lab Registration</h1>
+  <form id="registrationForm">
+    <!-- Step 1 -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="rollNumber">Roll Number:</label>
+    <input type="text" id="rollNumber" name="rollNumber" required><br>
+
+    <label for="department">Department:</label>
+    <select id="department" name="department" required>
+      <option value="">Select Department</option>
+      <option value="cse">CSE</option>
+      <option value="mech">MECH</option>
+      <option value="it">IT</option>
+      <option value="aids">AIDS</option>
+      <option value="aiml">AIML</option>
+      <option value="csbs">CSBS</option>
+      <option value="civil">CIVIL</option>
+    </select><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="mobile">Mobile:</label>
+    <input type="text" id="mobile" name="mobile" required><br>
+
+    <button type="button" id="nextButton">Next</button>
+
+    <!-- Step 2 (hidden initially) -->
+    <div id="step2" class="hidden">
+      <label for="lab">Lab:</label>
+      <select id="lab" name="lab" required>
+        <option value="">Select Lab</option>
+        <option value="roboticlab">Robotic Lab</option>
+        <option value="arvrlab">AR/VR Lab</option>
+        <option value="cybersecuritylab">Cyber Security Lab</option>
+      </select><br>
+
+      <label>Skills (select at least one):</label>
+      <input type="checkbox" name="skills" value="Python"> Python<br>
+      <input type="checkbox" name="skills" value="Java"> Java<br>
+      <input type="checkbox" name="skills" value="C++"> C++<br>
+      <input type="checkbox" name="skills" value="HTML/CSS"> HTML/CSS<br>
+      <input type="checkbox" name="skills" value="JavaScript"> JavaScript<br>
+
+      <label for="comments">Additional Comments:</label>
+      <textarea id="comments" name="comments" rows="4"></textarea><br>
+
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
