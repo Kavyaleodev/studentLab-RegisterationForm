@@ -1,3 +1,5 @@
+require("dotenv").config(); // Load environment variables from .env
+
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -9,8 +11,10 @@ app.use(express.urlencoded({ extended: true })); // For parsing URL-encoded bodi
 // Serve static files from the current directory (for CSS, JS, images, etc.)
 app.use(express.static(path.join(__dirname)));
 
-// MongoDB connection
-mongoose.connect("mongodb://localhost:27017/labRegistration", { useNewUrlParser: true, useUnifiedTopology: true })
+// MongoDB connection using environment variable
+const mongoUri = process.env.MONGO_URI;
+
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB:", err));
 
@@ -40,7 +44,7 @@ app.post("/submit", async (req, res) => {
     console.log("Received form data:", req.body); // Log received data for debugging
 
     // Check if the email is a valid college email
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@college\.edu$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@kingcollege\.ac\.in$/;
     if (!emailRegex.test(email)) {
       return res.status(400).send("Please enter a valid college email address.");
     }

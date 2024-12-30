@@ -6,7 +6,7 @@ document.getElementById("nextButton").addEventListener("click", function() {
     const mobile = document.getElementById("mobile").value;
   
     // Validate email (college email)
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@college\.edu$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@kingcollege\.ac\.in$/;
     if (!emailRegex.test(email)) {
       alert("Please enter a valid college email address.");
       return;
