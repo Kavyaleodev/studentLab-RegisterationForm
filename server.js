@@ -14,9 +14,18 @@ app.use(express.static(path.join(__dirname)));
 // MongoDB connection using environment variable
 const mongoUri = process.env.MONGO_URI;
 
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+if (!mongoUri) {
+  console.error("MONGO_URI is not defined in the .env file. Please add it.");
+  process.exit(1); // Exit the application if MONGO_URI is missing
+}
+
+mongoose
+  .connect(mongoUri)
   .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Failed to connect to MongoDB:", err));
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB:", err);
+    process.exit(1); // Exit the application if MongoDB connection fails
+  });
 
 // Define the schema and model
 const registrationSchema = new mongoose.Schema({
@@ -81,7 +90,7 @@ app.post("/submit", async (req, res) => {
 });
 
 // Start the server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Use environment variable PORT or fallback to 3000
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
